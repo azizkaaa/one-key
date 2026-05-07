@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blue: #0942b2;
+  --color-blue-hover: #0735a0;
+  --color-dark: #0f172a;
+  --color-bg-gray: #f2f4f6;
+  --color-text-dark: #191c1e;
+  
+  /* Связываем Tailwind с переменными из next/font */
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    /* font-family убрали отсюда, так как класс font-sans в layout.tsx сделает всё сам */
+    color: var(--color-text-dark);
+    background-color: #ffffff;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+  /* Твоя форма */
+  .input-field {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid #d1d5db;
+    padding: 12px 0;
+    font-family: var(--font-sans); /* Исправили старое название переменной */
+    font-size: 15px;
+    color: var(--color-text-dark);
+    background: transparent;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .input-field:focus {
+    border-bottom-color: var(--color-blue);
+  }
+  .input-field::placeholder {
+    color: #9ca3af;
+  }
+  .input-field-error {
+    border-bottom-color: #ef4444 !important;
+  }
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--color-blue); border-radius: 3px; }
+::selection { background: var(--color-blue); color: white; }
