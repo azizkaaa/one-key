@@ -140,58 +140,100 @@ export default function Navbar() {
 
       {/* Mobile menu dropdown */}
    
+{/* Mobile menu dropdown */}
 <AnimatePresence>
-  {isOpen && (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }} // Легкое смещение сверху вниз вместо height: 0
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.2 }}
-      // Исправленные классы: используем фиксированное положение от верхнего края
-      className="lg:hidden fixed inset-0 z-[60] bg-white overflow-y-auto" 
-      style={{ height: '100dvh' }} // Использование динамического vh для мобильных
-    >
-      {/* Кнопка закрытия внутри самого меню или повтор шапки для консистентности */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-         <Image src="/images/no_bg_dark.png" alt="Logo" width={140} height={35} className="h-8 w-auto object-contain" />
-         <button onClick={() => setIsOpen(false)} className="w-10 h-10 flex items-center justify-center">
-            {/* Иконка крестика */}
-            <div className="relative w-6 h-6">
-               <span className="absolute block w-6 h-[2px] bg-[#191c1e] rotate-45 top-1/2" />
-               <span className="absolute block w-6 h-[2px] bg-[#191c1e] -rotate-45 top-1/2" />
-            </div>
-         </button>
-      </div>
-
-      <div className="px-5 py-8 flex flex-col gap-6">
-        {/* Твой контент (ссылки, переключатель языка) */}
-        <div className="flex flex-col gap-5">
-          {navLinks.map((link, i) => (
-            <motion.div
-              key={link.href}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.05 }}
-            >
-              <Link
-                href={link.href}
-                onClick={() => setIsOpen(false)} // Обязательно закрываем по клику
-                className={`block text-[24px] font-normal py-2 ${
-                  isActive(link.href) ? "text-[#0942b2]" : "text-[#475569]"
-                }`}
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                {link.label}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="lg:hidden fixed inset-0 z-[60] bg-white flex flex-col"
+            style={{ height: '100dvh' }}
+          >
+            {/* Header inside mobile menu to keep it consistent */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
+              <Link href="/" onClick={() => setIsOpen(false)}>
+                <Image
+                  src="/images/no_bg_dark.png"
+                  alt="Logo"
+                  width={150}
+                  height={40}
+                  className="h-8 w-auto object-contain"
+                />
               </Link>
-            </motion.div>
-          ))}
-        </div>
-        
-        {/* ... остальной код (языки и кнопка) ... */}
-      </div>
-    </motion.div>
-  )}
-</AnimatePresence>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-10 h-10 flex items-center justify-center"
+                aria-label="Close menu"
+              >
+                <div className="relative w-6 h-6">
+                  <span className="absolute block w-6 h-[2px] bg-[#191c1e] rotate-45 top-1/2 -translate-y-1/2" />
+                  <span className="absolute block w-6 h-[2px] bg-[#191c1e] -rotate-45 top-1/2 -translate-y-1/2" />
+                </div>
+              </button>
+            </div>
+
+            {/* Menu Content */}
+            <div className="flex-1 px-5 py-8 flex flex-col overflow-y-auto">
+              {/* Nav Links */}
+              <div className="flex flex-col gap-4">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`block text-[22px] font-normal py-2 transition-colors ${
+                        isActive(link.href) ? "text-[#0942b2]" : "text-[#475569]"
+                      }`}
+                      style={{ fontFamily: 'var(--font-heading)' }}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Bottom Section: Language & CTA */}
+              <div className="mt-auto pt-10 pb-6 flex flex-col gap-6">
+                {/* Language Switcher */}
+                <div className="flex bg-[#f2f4f6] p-1 rounded-xl self-start">
+                  {locales.map((loc) => (
+                    <button
+                      key={loc}
+                      onClick={() => {
+                        setLocale(loc as Locale);
+                        setIsOpen(false);
+                      }}
+                      className={`px-5 py-2.5 text-[14px] font-bold rounded-lg transition-all duration-200 ${
+                        locale === loc
+                          ? "bg-white text-[#0942b2] shadow-sm"
+                          : "text-[#6b7280] hover:text-[#191c1e]"
+                      }`}
+                    >
+                      {localeNames[loc as Locale]}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Discuss Button */}
+                <Link
+                  href="/contacts"
+                  onClick={() => setIsOpen(false)}
+                  className="bg-[#0942b2] text-white px-6 py-4 rounded-xl font-semibold text-[16px] text-center shadow-lg active:scale-[0.98] transition-all"
+                >
+                  {t.nav.discuss}
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
