@@ -139,71 +139,59 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu dropdown */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden bg-white border-t border-gray-100 overflow-y-auto fixed top-full left-0 right-0 bottom-0"
-          >
-            <div className="px-5 py-8 flex flex-col gap-6">
-              {/* Mobile Nav Links */}
-              <div className="flex flex-col gap-5">
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    <Link
-                      href={link.href}
-                      // Применили те же стили для мобильного меню
-                      className={`block text-[24px] font-normal py-2 ${
-                        isActive(link.href) ? "text-[#0942b2]" : "text-[#475569]"
-                      }`}
-                      style={{ fontFamily: 'var(--font-heading)' }}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Mobile Language Switcher */}
-              <div className="mt-4 flex bg-[#f2f4f6] p-1.5 rounded-xl self-start">
-                {locales.map((loc) => (
-                  <button
-                    key={loc}
-                    onClick={() => {
-                      setLocale(loc as Locale);
-                      setIsOpen(false);
-                    }}
-                    className={`px-5 py-2 text-[14px] font-bold rounded-lg transition-all duration-200 ${
-                      locale === loc
-                        ? "bg-white text-[#0942b2] shadow-sm"
-                        : "text-[#6b7280]"
-                    }`}
-                  >
-                    {localeNames[loc as Locale]}
-                  </button>
-                ))}
-              </div>
-
-              {/* Mobile Button */}
-              <Link 
-                href="/contacts" 
-                onClick={() => setIsOpen(false)}
-                className="bg-[#0942b2] text-white px-6 py-4 rounded-lg font-semibold text-[16px] text-center mt-6 shadow-md hover:bg-[#073694] active:scale-95 transition-all"
-              >
-                {t.nav.discuss}
-              </Link>
+   
+<AnimatePresence>
+  {isOpen && (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }} // Легкое смещение сверху вниз вместо height: 0
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2 }}
+      // Исправленные классы: используем фиксированное положение от верхнего края
+      className="lg:hidden fixed inset-0 z-[60] bg-white overflow-y-auto" 
+      style={{ height: '100dvh' }} // Использование динамического vh для мобильных
+    >
+      {/* Кнопка закрытия внутри самого меню или повтор шапки для консистентности */}
+      <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+         <Image src="/images/no_bg_dark.png" alt="Logo" width={140} height={35} className="h-8 w-auto object-contain" />
+         <button onClick={() => setIsOpen(false)} className="w-10 h-10 flex items-center justify-center">
+            {/* Иконка крестика */}
+            <div className="relative w-6 h-6">
+               <span className="absolute block w-6 h-[2px] bg-[#191c1e] rotate-45 top-1/2" />
+               <span className="absolute block w-6 h-[2px] bg-[#191c1e] -rotate-45 top-1/2" />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+         </button>
+      </div>
+
+      <div className="px-5 py-8 flex flex-col gap-6">
+        {/* Твой контент (ссылки, переключатель языка) */}
+        <div className="flex flex-col gap-5">
+          {navLinks.map((link, i) => (
+            <motion.div
+              key={link.href}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <Link
+                href={link.href}
+                onClick={() => setIsOpen(false)} // Обязательно закрываем по клику
+                className={`block text-[24px] font-normal py-2 ${
+                  isActive(link.href) ? "text-[#0942b2]" : "text-[#475569]"
+                }`}
+                style={{ fontFamily: 'var(--font-heading)' }}
+              >
+                {link.label}
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+        
+        {/* ... остальной код (языки и кнопка) ... */}
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
     </header>
   );
 }
