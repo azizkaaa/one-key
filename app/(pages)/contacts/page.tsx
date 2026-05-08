@@ -95,8 +95,8 @@ export default function ContactsPage() {
                   <p className="text-[11px] 2xl:text-[12px] font-bold tracking-widest text-[#6b7280] uppercase mb-2">
                     {c.info.email}
                   </p>
-                  <a href="mailto:hello@onekey.tech" className="text-[16px] 2xl:text-[18px] font-bold text-[#191c1e] hover:text-[#0942b2] transition-colors">
-                    hello@onekey.tech
+                  <a href="mailto:info@onekeytech.uz" className="text-[16px] 2xl:text-[18px] font-bold text-[#191c1e] hover:text-[#0942b2] transition-colors">
+                  info@onekeytech.uz
                   </a>
                 </div>
 
@@ -112,11 +112,11 @@ export default function ContactsPage() {
                   </p>
                   {/* Шрифт Helvetica применен ко всему номеру телефона */}
                   <a 
-                    href="tel:+998712000000" 
+                    href="tel:+998998283136" 
                     className="text-[16px] 2xl:text-[18px] font-bold text-[#191c1e] hover:text-[#0942b2] transition-colors"
                     style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
                   >
-                    +998 (71) 200-00-00
+                    +998 99 828 31 36
                   </a>
                 </div>
 
@@ -152,7 +152,7 @@ export default function ContactsPage() {
       </section>
 
       {/* 2. MAP + FORM */}
-      <section className="w-full bg-white py-16 md:py-24 2xl:py-32">
+      <section className="w-full bg-white py-16 md:py-24 2xl:py-32 scroll-mt-20 md:scroll-mt-24">
         <div className="max-w-7xl 2xl:max-w-[1600px] w-full mx-auto px-5 md:px-8 2xl:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
             
@@ -187,7 +187,7 @@ export default function ContactsPage() {
 
             {/* Form */}
             <FadeIn delay={0.15} direction="right">
-              <div className="bg-[#f8fafc] rounded-2xl p-8 md:p-12 2xl:p-16">
+              <div id="contact-form" className="bg-[#f8fafc] rounded-2xl p-8 md:p-12 2xl:p-16">
                 <h2 
                   className="text-[32px] md:text-[40px] 2xl:text-[48px] font-normal text-[#191c1e] mb-10"
                   style={{ fontFamily: 'var(--font-heading)' }}

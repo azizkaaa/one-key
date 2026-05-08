@@ -263,7 +263,7 @@ export default function PortfolioPage() {
 
       <FadeIn delay={0.1}>
         <Link 
-          href="/contacts" 
+          href="/contacts#contact-form" 
           className="inline-block bg-[#0942b2] text-white px-8 py-3.5 md:px-10 md:py-4 rounded font-bold text-[15px] 2xl:text-[17px] hover:bg-[#073694] transition-all shadow-md hover:shadow-lg active:scale-[0.98] whitespace-nowrap"
         >
           {p.cta.btn}

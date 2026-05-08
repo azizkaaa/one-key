@@ -30,7 +30,7 @@ export default function HomePage() {
               </p>
               <div className="mt-10 flex flex-wrap gap-4 2xl:gap-6">
                 <Link 
-                  href="/contacts" 
+                  href="/contacts#contact-form" 
                   className="bg-[#0942b2] text-white px-8 py-3.5 2xl:px-10 2xl:py-4 rounded-md font-semibold text-[16px] 2xl:text-[18px] hover:bg-[#073694] transition-colors inline-block text-center"
                 >
                   {h.hero.btnDiscuss}

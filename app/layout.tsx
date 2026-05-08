@@ -17,7 +17,7 @@ const raleway = Raleway({
 
 // 2. Максимальное SEO
 export const metadata: Metadata = {
-  metadataBase: new URL("https://onekey-technology.netlify.app"), 
+  metadataBase: new URL("https://onekeytech.uz"), 
 
   title: {
     default: "One Key Technologies — End-to-End Digital Solutions",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "One Key Technologies — End-to-End Digital Solutions",
     description: "Проектируем, разрабатываем и масштабируем технологические продукты для лидеров рынка.",
-    url: "https://onekey-technology.netlify.app",
+    url: "https://onekeytech.uz",
     siteName: "One Key Technologies",
     images: [
       {
@@ -75,11 +75,11 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://onekey-technology.netlify.app",
+    canonical: "https://onekeytech.uz",
     languages: {
-      "ru": "https://onekey-technology.netlify.app/ru",
-      "en": "https://onekey-technology.netlify.app/en",
-      "uz": "https://onekey-technology.netlify.app/uz",
+      "ru": "https://onekeytech.uz/ru",
+      "en": "https://onekeytech.uz/en",
+      "uz": "https://onekeytech.uz/uz",
     },
   },
 };

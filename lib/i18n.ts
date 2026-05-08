@@ -311,7 +311,7 @@ export const translations = {
       contacts: "КОНТАКТЫ",
       serviceLinks: ["Разработка ПО", "Аналитика", "UX/UI Дизайн", "QA & Testing"],
       companyLinks: ["О нас", "Кейсы", "Карьера", "Блог"],
-      rights: "© 2026 One Key Technologies. Все права защищены.",
+      rights: "© 2025 One Key Technologies. Все права защищены.",
       privacy: "Политика конфиденциальности",
     },
     validation: {

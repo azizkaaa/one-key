@@ -202,7 +202,7 @@ export default function ServicesPage() {
             
             <FadeIn delay={0.1}>
               <Link 
-                href="/contacts" 
+                href="/contacts#contact-form" 
                 className="inline-block bg-transparent border-2 border-white text-white px-8 md:px-10 py-3.5 rounded font-bold text-[15px] md:text-[16px] 2xl:text-[18px] hover:bg-white hover:text-[#0942b2] transition-all whitespace-nowrap active:scale-95"
               >
                 {s.cta.btn}

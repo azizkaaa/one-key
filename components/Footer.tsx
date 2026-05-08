@@ -84,27 +84,27 @@ export default function Footer() {
             <ul className="flex flex-col gap-3.5 2xl:gap-4">
               {/* Адрес */}
               <li className="text-[15px] 2xl:text-[16px] text-[#94a3b8]">
-                Москва, Пресненская наб. 12
+                {t.contacts.info.address}
               </li>
               
               {/* Телефон (шрифт Helvetica) */}
               <li>
                 <a
-                  href="tel:+74950000000"
+                  href="tel:+998998283136"
                   className="text-[15px] 2xl:text-[16px] text-[#94a3b8] hover:text-white transition-colors"
                   style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}
                 >
-                  +7 (495) 000-00-00
+                  +998 99 828 31 36
                 </a>
               </li>
               
               {/* Email */}
               <li>
                 <a
-                  href="mailto:hello@onekey.tech"
+                  href="mailto:info@onekeytech.uz"
                   className="text-[15px] 2xl:text-[16px] text-[#3b82f6] hover:text-blue-400 transition-colors"
                 >
-                  hello@onekey.tech
+                  info@onekeytech.uz
                 </a>
               </li>
             </ul>

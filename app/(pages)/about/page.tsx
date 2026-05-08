@@ -256,7 +256,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link 
-                href="/contacts" 
+                href="/contacts#contact-form" 
                 className="w-full sm:w-auto bg-white text-[#0942b2] px-10 py-4 rounded-md font-bold text-[16px] 2xl:text-[18px] hover:bg-gray-100 transition-all active:scale-95 text-center"
               >
                 {a.cta.btn1}
