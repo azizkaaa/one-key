@@ -58,7 +58,7 @@ export default function Navbar() {
               alt="One Key Technologies"
               width={200}
               height={50}
-              className="h-9 md:h-10 2xl:h-12 w-auto object-contain"
+              className="h-9 md:h-10 2xl:h-12 w-auto object-contain transform scale-125 origin-left transition-transform"
             />
           </Link>
 
@@ -68,13 +68,12 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                // Заменили цвет на #475569, поставили font-normal для Dela Gothic
-                className={`text-[15px] 2xl:text-[17px] font-normal transition-all duration-200 relative group ${
+                className={`text-[15px] 2xl:text-[17px] font-bold transition-all duration-200 relative group ${
                   isActive(link.href)
                     ? "text-[#0942b2]"
                     : "text-[#475569] hover:text-[#0942b2]"
                 }`}
-                style={{ fontFamily: 'var(--font-heading)' }}
+                style={{ fontFamily: '"Raleway", sans-serif' }}
               >
                 {link.label}
                 {isActive(link.href) && (

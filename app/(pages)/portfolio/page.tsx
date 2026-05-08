@@ -120,27 +120,28 @@ export default function PortfolioPage() {
 </section>
 
       {/* 2. FILTERS & PROJECTS */}
-    <section className="w-full bg-[#f8fafc] py-12 md:py-20 2xl:py-28">
-  <div className="max-w-7xl 2xl:max-w-[1600px] w-full mx-auto px-5 md:px-8 2xl:px-12">
-    
-    {/* Filter Tabs */}
-    <FadeIn>
-      <div className="flex bg-gray-200/50 p-1 rounded-xl w-fit mb-12 2xl:mb-16">
-        {filters.map((filter) => (
-          <button
-            key={filter.key}
-            onClick={() => setActiveFilter(filter.key)}
-            className={`px-5 py-2.5 rounded-lg text-[13px] 2xl:text-[15px] font-bold transition-all duration-200 ${
-              activeFilter === filter.key
-                ? "bg-white text-[#0942b2] shadow-sm"
-                : "text-[#64748b] hover:text-[#191c1e]"
-            }`}
-          >
-            {filter.label}
-          </button>
-        ))}
-      </div>
-    </FadeIn>
+      <section className="w-full bg-[#f8fafc] py-12 md:py-20 2xl:py-28">
+        <div className="max-w-7xl 2xl:max-w-[1600px] w-full mx-auto px-5 md:px-8 2xl:px-12">
+          
+          {/* Filter Tabs */}
+          <FadeIn>
+            {/* ДОБАВЛЕНО: flex-wrap, чтобы фильтры переносились на новые строки на мобилке */}
+            <div className="flex flex-wrap bg-gray-200/50 p-1.5 rounded-xl w-full sm:w-fit mb-12 2xl:mb-16 gap-1">
+              {filters.map((filter) => (
+                <button
+                  key={filter.key}
+                  onClick={() => setActiveFilter(filter.key)}
+                  className={`flex-grow sm:flex-grow-0 px-4 sm:px-5 py-2.5 rounded-lg text-[13px] 2xl:text-[15px] font-bold transition-all duration-200 text-center ${
+                    activeFilter === filter.key
+                      ? "bg-white text-[#0942b2] shadow-sm"
+                      : "text-[#64748b] hover:text-[#191c1e] hover:bg-black/5"
+                  }`}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+          </FadeIn>
 
     {/* Проекты с фиксированной сеткой как в Figma */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 2xl:gap-10">

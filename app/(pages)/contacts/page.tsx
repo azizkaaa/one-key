@@ -8,24 +8,19 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import FadeIn from "@/components/FadeIn";
 
-const buildSchema = (v: {
-  nameRequired: string;
-  nameMin: string;
-  phoneRequired: string;
-  phoneInvalid: string;
-  messageRequired: string;
-  messageMin: string;
-}) =>
+const buildSchema = (v: any) =>
   z.object({
-    name: z.string().min(1, v.nameRequired).min(2, v.nameMin),
+    name: z.string().min(1, v.nameRequired || "Введите имя").min(2, v.nameMin || "Минимум 2 символа"),
     phone: z
       .string()
-      .min(1, v.phoneRequired)
-      .regex(/^\+?[0-9\s\-()]{7,20}$/, v.phoneInvalid),
-    message: z.string().min(1, v.messageRequired).min(10, v.messageMin),
+      .min(1, v.phoneRequired || "Введите телефон")
+      .regex(/^\+?[0-9\s\-()]{7,20}$/, v.phoneInvalid || "Неверный формат"),
+    message: z.string().optional().or(z.literal("")), // Сделали необязательным
+    industry: z.string().min(1, "Пожалуйста, выберите направление"), // Новое поле
   });
 
-type FormData = { name: string; phone: string; message: string };
+// ДОБАВИЛИ знак вопроса к message и поле industry
+type FormData = { name: string; phone: string; message?: string; industry: string };
 
 export default function ContactsPage() {
   const { t } = useLanguage();
@@ -191,7 +186,6 @@ export default function ContactsPage() {
             </FadeIn>
 
             {/* Form */}
-            {/* Form */}
             <FadeIn delay={0.15} direction="right">
               <div className="bg-[#f8fafc] rounded-2xl p-8 md:p-12 2xl:p-16">
                 <h2 
@@ -220,42 +214,61 @@ export default function ContactsPage() {
                     <input
                       {...register("phone", {
                         onChange: (e) => {
-                          // Убираем все, кроме цифр
                           let val = e.target.value.replace(/[^\d]/g, ""); 
-                          
-                          // Если пусто — оставляем пустым
                           if (!val) {
                             e.target.value = "";
                             return;
                           }
-
-                          // Жестко привязываем код Узбекистана
                           if (!val.startsWith("998")) {
                              val = "998" + val;
                           }
-                          
-                          // Ограничиваем длину (998 + 9 цифр)
                           val = val.substring(0, 12);
-
-                          // Формируем красивую маску
                           let formatted = "+998";
                           if (val.length > 3) formatted += " " + val.substring(3, 5);
                           if (val.length > 5) formatted += "-" + val.substring(5, 8);
                           if (val.length > 8) formatted += "-" + val.substring(8, 10);
                           if (val.length > 10) formatted += "-" + val.substring(10, 12);
                           
-                          e.target.value = formatted; // Обновляем визуально
+                          e.target.value = formatted; 
                         }
                       })}
-                      placeholder="+998"
+                      placeholder="+998 90-000-00-00"
                       type="tel"
                       className={inputClass(!!errors.phone)}
                       autoComplete="tel"
-                      maxLength={17} // Ограничиваем ввод по длине маски
-                      style={{ fontFamily: 'Helvetica, Arial, sans-serif' }} // Строгий системный шрифт для цифр
+                      maxLength={17}
+                      style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
                     />
                     {errors.phone && (
                       <p className="text-[12px] text-red-500 mt-2">{errors.phone.message}</p>
+                    )}
+                  </div>
+
+                  {/* НОВОЕ ПОЛЕ: Направление */}
+                  <div>
+                    <label className={labelClass}>ВЫБЕРИТЕ НАПРАВЛЕНИЕ</label>
+                    <select
+                      {...register("industry")}
+                      className={`${inputClass(!!errors.industry)} appearance-none cursor-pointer`}
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20stroke%3D%22%236b7280%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "right 0.5rem center",
+                        backgroundSize: "1.5em 1.5em",
+                        paddingRight: "2.5rem"
+                      }}
+                      defaultValue=""
+                    >
+                      <option value="" disabled hidden>Выберите из списка...</option>
+                      <option value="B2B / Промышленность" className="text-black">B2B / Промышленность</option>
+                      <option value="Образование" className="text-black">Образование</option>
+                      <option value="Банки / Финтех" className="text-black">Банки / Финтех</option>
+                      <option value="Медицина" className="text-black">Медицина</option>
+                      <option value="Госсектор" className="text-black">Государственный сектор</option>
+                      <option value="Другое" className="text-black">Другое</option>
+                    </select>
+                    {errors.industry && (
+                      <p className="text-[12px] text-red-500 mt-2">{errors.industry.message}</p>
                     )}
                   </div>
 

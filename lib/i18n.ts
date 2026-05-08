@@ -174,32 +174,53 @@ export const translations = {
           "One Key Technologies — это команда инженеров и дизайнеров, создающих масштабируемые решения для лидеров рынка. Мы верим, что технологии должны быть прозрачными, надёжными и эффективными.",
       },
       team: {
-        title: "Наша команда",
-        backend: {
-          title: "Backend Разработка",
-          middle: "Middle / Senior",
-          middleExp: "5-10 лет опыта",
-          middleDesc: "Инженеры с глубокой экспертизой в построении отказоустойчивых систем.",
-          principal: "Principal Architect",
-          principalExp: "20+ лет опыта",
-          principalDesc:
-            "Архитекторы, проектирующие фундамент для высоконагруженных Enterprise-решений.",
-        },
-        management: {
-          title: "Управление",
-          sa: "System Analysts",
-          saExp: "10-15 лет опыта",
-          saDesc: "Проектирование надёжной архитектуры, детальная проработка ТЗ и минимизация рисков.",
-          pm: "Project Managers",
-          pmExp: "от 5 лет опыта",
-          pmDesc: "Гарантия соблюдения сроков, бюджетов и прозрачности коммуникаций.",
-        },
-        specializations: {
-          title: "Специализации",
-          list: ["Frontend Developers", "Business Analysts", "QA Testers (Manual & Auto)", "DevOps Engineers"],
-          exp: "Специалисты с опытом от 5 до 15 лет",
-        },
+  title: "Наша команда",
+  backend: {
+    title: "Backend Разработка",
+    roles: [
+      { 
+        name: "Middle / Senior", 
+        experience: "5-10 лет опыта", 
+        desc: "Инженеры с глубокой экспертизой в построении масштабируемых и отказоустойчивых систем." 
       },
+      { 
+        name: "Principal Architect", 
+        experience: "20+ лет опыта", 
+        desc: "Архитекторы, проектирующие фундамент для высоконагруженных Enterprise-решений." 
+      }
+    ]
+  },
+  frontend: {
+    title: "Frontend & Mobile Разработка",
+    roles: [
+      { 
+        name: "Frontend Developers", 
+        experience: "от 3 до 8 лет опыта", 
+        desc: "Разработка pixel-perfect интерфейсов и сложных клиентских логик для современных веб-экосистем." 
+      },
+      { 
+        name: "Mobile (iOS, Android, Flutter)", 
+        experience: "от 4 лет опыта", 
+        desc: "Нативная и кроссплатформенная разработка (Dart, Swift, Kotlin) для безупречного мобильного опыта." 
+      }
+    ]
+  },
+  management: {
+    title: "Управление и Инфраструктура",
+    roles: [
+      { 
+        name: "Analysts & Project Managers", 
+        experience: "5-15 лет опыта", 
+        desc: "Проектирование архитектуры, сбор требований, контроль сроков и прозрачность коммуникаций." 
+      },
+      { 
+        name: "QA & DevOps Engineers", 
+        experience: "от 10-15 лет опыта", 
+        desc: "Автоматизация CI/CD пайплайнов и строгий многоуровневый контроль качества (Manual & Auto)." 
+      }
+    ]
+  }
+},
       values: {
         title: "Наши ценности",
         mission: {
@@ -467,35 +488,50 @@ export const translations = {
       team: {
         title: "Bizning jamoa",
         backend: {
-          title: "Backend Ishlab chiqish",
-          middle: "Middle / Senior",
-          middleExp: "5-10 yil tajriba",
-          middleDesc: "Xatolarga chidamli tizimlar qurishda chuqur ekspertizaga ega muhandislar.",
-          principal: "Principal Arxitektor",
-          principalExp: "20+ yil tajriba",
-          principalDesc:
-            "Yuqori yuklamali Enterprise-yechimlar uchun asos loyihalovchi arxitektorlar.",
+          title: "Backend Dasturlash",
+          roles: [
+            { 
+              name: "Middle / Senior", 
+              experience: "5-10 yillik tajriba", 
+              desc: "Masshtablanadigan va xatolarga chidamli tizimlarni yaratishda chuqur tajribaga ega muhandislar." 
+            },
+            { 
+              name: "Principal Architect", 
+              experience: "20+ yillik tajriba", 
+              desc: "Yuqori yuklamali Enterprise yechimlari uchun poydevor loyihalashtiruvchi arxitektorlar." 
+            }
+          ]
+        },
+        frontend: {
+          title: "Frontend va Mobile",
+          roles: [
+            { 
+              name: "Frontend Developers", 
+              experience: "3 dan 8 yilgacha tajriba", 
+              desc: "Zamonaviy veb-ekotizimlar uchun pixel-perfect interfeyslar va murakkab mijoz mantiqlarini ishlab chiqish." 
+            },
+            { 
+              name: "Mobile (iOS, Android, Flutter)", 
+              experience: "4+ yillik tajriba", 
+              desc: "Mukammal mobil tajriba uchun nativ va kross-platforma dasturlash (Dart, Swift, Kotlin)." 
+            }
+          ]
         },
         management: {
-          title: "Boshqaruv",
-          sa: "Tizim Analistlari",
-          saExp: "10-15 yil tajriba",
-          saDesc:
-            "Ishonchli arxitektura loyihalash, TZ-ni batafsil ishlab chiqish va risklarni minimallаshtirish.",
-          pm: "Loyiha Menejerlari",
-          pmExp: "5 yildan ortiq tajriba",
-          pmDesc: "Muddat, byudjet va kommunikatsiya shaffofligini ta'minlash kafolati.",
-        },
-        specializations: {
-          title: "Ixtisosliklar",
-          list: [
-            "Frontend Developers",
-            "Business Analysts",
-            "QA Testers (Manual & Auto)",
-            "DevOps Engineers",
-          ],
-          exp: "5 dan 15 yilgacha tajribaga ega mutaxassislar",
-        },
+          title: "Boshqaruv va QA / DevOps",
+          roles: [
+            { 
+              name: "Analysts & Project Managers", 
+              experience: "5-15 yillik tajriba", 
+              desc: "Arxitekturani loyihalashtirish, talablarni yig'ish, muddatlarni nazorat qilish va shaffof aloqa." 
+            },
+            { 
+              name: "QA & DevOps Engineers", 
+              experience: "5-10 yillik tajriba", 
+              desc: "CI/CD quvurlarini avtomatlashtirish va qat'iy ko'p darajali sifat nazorati (Manual & Auto)." 
+            }
+          ]
+        }
       },
       values: {
         title: "Bizning qadriyatlar",
@@ -761,33 +797,49 @@ export const translations = {
         title: "Our Team",
         backend: {
           title: "Backend Development",
-          middle: "Middle / Senior",
-          middleExp: "5-10 years of experience",
-          middleDesc: "Engineers with deep expertise in building fault-tolerant systems.",
-          principal: "Principal Architect",
-          principalExp: "20+ years of experience",
-          principalDesc:
-            "Architects designing the foundation for high-load Enterprise solutions.",
+          roles: [
+            { 
+              name: "Middle / Senior", 
+              experience: "5-10 years of experience", 
+              desc: "Engineers with deep expertise in building scalable and fault-tolerant systems." 
+            },
+            { 
+              name: "Principal Architect", 
+              experience: "20+ years of experience", 
+              desc: "Architects designing the foundation for high-load Enterprise solutions." 
+            }
+          ]
+        },
+        frontend: {
+          title: "Frontend & Mobile",
+          roles: [
+            { 
+              name: "Frontend Developers", 
+              experience: "3 to 8 years of experience", 
+              desc: "Development of pixel-perfect interfaces and complex client logic for modern web ecosystems." 
+            },
+            { 
+              name: "Mobile (iOS, Android, Flutter)", 
+              experience: "4+ years of experience", 
+              desc: "Native and cross-platform development (Dart, Swift, Kotlin) for a flawless mobile experience." 
+            }
+          ]
         },
         management: {
-          title: "Management",
-          sa: "System Analysts",
-          saExp: "10-15 years of experience",
-          saDesc: "Reliable architecture design, detailed specification development and risk minimization.",
-          pm: "Project Managers",
-          pmExp: "5+ years of experience",
-          pmDesc: "Guarantee of meeting deadlines, budgets and communication transparency.",
-        },
-        specializations: {
-          title: "Specializations",
-          list: [
-            "Frontend Developers",
-            "Business Analysts",
-            "QA Testers (Manual & Auto)",
-            "DevOps Engineers",
-          ],
-          exp: "Specialists with 5 to 15 years of experience",
-        },
+          title: "Management & Infrastructure",
+          roles: [
+            { 
+              name: "Analysts & Project Managers", 
+              experience: "10-15 years of experience", 
+              desc: "Architecture design, requirements gathering, deadline control, and transparent communication." 
+            },
+            { 
+              name: "QA & DevOps Engineers", 
+              experience: "5+ years of experience", 
+              desc: "CI/CD pipeline automation and strict multi-level quality control (Manual & Auto)." 
+            }
+          ]
+        }
       },
       values: {
         title: "Our Values",

@@ -47,100 +47,88 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. ТЕМ (Команда) */}
-      <section className="w-full bg-[#f8fafc] py-16 md:py-24 2xl:py-32">
+
+     {/* НАША КОМАНДА */}
+     <section className="w-full bg-[#f8fafc] py-16 md:py-24 2xl:py-32">
         <div className="max-w-7xl 2xl:max-w-[1600px] w-full mx-auto px-5 md:px-8 2xl:px-12">
+          
+          {/* Заголовок */}
           <FadeIn>
-            <h2 className="text-[32px] md:text-[42px] 2xl:text-[56px] font-normal text-[#191c1e] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-              {a.team.title}
+            <h2 className="text-[36px] md:text-[46px] 2xl:text-[56px] text-[#191c1e] mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+              {a.team.title} {/* или t.team.title в зависимости от того, как ты передаешь */}
             </h2>
-            <div className="w-20 md:w-24 h-1.5 bg-[#0942b2] rounded-full mb-12 2xl:mb-16" />
+            <div className="w-20 md:w-24 h-1.5 bg-[#0942b2] mb-12 2xl:mb-16" />
           </FadeIn>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 2xl:gap-10">
-            {/* Backend */}
-            <FadeIn delay={0.1}>
-              <div className="bg-white border-t-4 border-[#0942b2] rounded-b-2xl rounded-t-sm p-8 2xl:p-10 h-full shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 2xl:w-12 2xl:h-12 bg-[#f0f4ff] rounded-lg flex items-center justify-center">
-                    <Image src="/images/terminal.svg" alt="icon" width={24} height={24} className="w-6 h-6 2xl:w-7 2xl:h-7 object-contain" />
-                  </div>
-                  <h3 className="text-[18px] 2xl:text-[22px] text-[#191c1e]">{a.team.backend.title}</h3>
-                </div>
-                <div className="space-y-6">
-                  <div className="border-b border-gray-100 pb-6">
-                    <div className="flex justify-between items-baseline mb-2">
-                      <span className="text-[15px] 2xl:text-[17px] font-bold text-[#191c1e]">{a.team.backend.middle}</span>
-                      <span className="text-[12px] 2xl:text-[13px] font-bold text-[#0942b2] tracking-wide">{a.team.backend.middleExp}</span>
+          {/* Карточки (Сетка) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 2xl:gap-8">
+            {[
+              {
+                id: "backend",
+                icon: "/images/builder.svg", // Проверь пути к иконкам
+                data: a.team.backend,
+              },
+              {
+                id: "frontend",
+                icon: "/images/terminal.svg",
+                data: a.team.frontend,
+              },
+              {
+                id: "management",
+                icon: "/images/manag.svg",
+                data: a.team.management,
+              },
+            ].map((card, i) => (
+              <FadeIn key={card.id} delay={i * 0.1} className="h-full">
+                {/* Дизайн карточки как в Figma: верхняя синяя граница */}
+                <div className="bg-white h-full border border-gray-100 border-t-[4px] border-t-[#0942b2] rounded-b-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] p-8 2xl:p-10">
+                  
+                  {/* Шапка карточки (Иконка + Заголовок) */}
+                  <div className="flex items-center gap-4 mb-8 2xl:mb-10">
+                    <div className="w-12 h-12 2xl:w-14 2xl:h-14 bg-[#eef2fa] rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Image 
+                        src={card.icon} 
+                        alt={card.data.title} 
+                        width={24} 
+                        height={24} 
+                        className="w-6 h-6 2xl:w-7 2xl:h-7 object-contain" 
+                      />
                     </div>
-                    <p className="text-[14px] 2xl:text-[15px] text-[#6b7280] leading-relaxed">{a.team.backend.middleDesc}</p>
+                    <h3 className="text-[22px] 2xl:text-[26px] text-[#191c1e]" style={{ fontFamily: 'var(--font-heading)' }}>
+                      {card.data.title}
+                    </h3>
                   </div>
-                  <div>
-                    <div className="flex justify-between items-baseline mb-2">
-                      <span className="text-[15px] 2xl:text-[17px] font-bold text-[#191c1e]">{a.team.backend.principal}</span>
-                      <span className="text-[12px] 2xl:text-[13px] font-bold text-[#0942b2] tracking-wide">{a.team.backend.principalExp}</span>
-                    </div>
-                    <p className="text-[14px] 2xl:text-[15px] text-[#6b7280] leading-relaxed">{a.team.backend.principalDesc}</p>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
 
-            {/* Management */}
-            <FadeIn delay={0.2}>
-              <div className="bg-white border-t-4 border-[#0942b2] rounded-b-2xl rounded-t-sm p-8 2xl:p-10 h-full shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 2xl:w-12 2xl:h-12 bg-[#f0f4ff] rounded-lg flex items-center justify-center">
-                    <Image src="/images/manag.svg" alt="icon" width={24} height={24} className="w-6 h-6 2xl:w-7 2xl:h-7 object-contain" />
+                  {/* Список ролей внутри карточки */}
+                  <div className="space-y-6 2xl:space-y-8">
+                    {card.data.roles.map((role: any, idx: number) => (
+                      <div 
+                        key={idx} 
+                        // Добавляем легкую серую линию между элементами (кроме последнего)
+                        className="border-b border-gray-100 pb-6 2xl:pb-8 last:border-0 last:pb-0"
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <h4 className="text-[16px] 2xl:text-[18px] text-[#191c1e] pr-2">
+                            {role.name}
+                          </h4>
+                          <span className="text-[12px] 2xl:text-[13px] font-bold text-[#0942b2] whitespace-nowrap mt-1 uppercase tracking-wider">
+                            {role.experience}
+                          </span>
+                        </div>
+                        <p className="text-[14px] 2xl:text-[16px] text-[#6b7280] leading-relaxed">
+                          {role.desc}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                  <h3 className="text-[18px] 2xl:text-[22px] text-[#191c1e]">{a.team.management.title}</h3>
-                </div>
-                <div className="space-y-6">
-                  <div className="border-b border-gray-100 pb-6">
-                    <div className="flex justify-between items-baseline mb-2">
-                      <span className="text-[15px] 2xl:text-[17px] font-bold text-[#191c1e]">{a.team.management.sa}</span>
-                      <span className="text-[12px] 2xl:text-[13px] font-bold text-[#0942b2] tracking-wide">{a.team.management.saExp}</span>
-                    </div>
-                    <p className="text-[14px] 2xl:text-[15px] text-[#6b7280] leading-relaxed">{a.team.management.saDesc}</p>
-                  </div>
-                  <div>
-                    <div className="flex justify-between items-baseline mb-2">
-                      <span className="text-[15px] 2xl:text-[17px] font-bold text-[#191c1e]">{a.team.management.pm}</span>
-                      <span className="text-[12px] 2xl:text-[13px] font-bold text-[#0942b2] tracking-wide">{a.team.management.pmExp}</span>
-                    </div>
-                    <p className="text-[14px] 2xl:text-[15px] text-[#6b7280] leading-relaxed">{a.team.management.pmDesc}</p>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
 
-            {/* Specializations */}
-            <FadeIn delay={0.3}>
-              <div className="bg-white border-t-4 border-[#0942b2] rounded-b-2xl rounded-t-sm p-8 2xl:p-10 h-full shadow-sm hover:shadow-md transition-shadow flex flex-col">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 2xl:w-12 2xl:h-12 bg-[#f0f4ff] rounded-lg flex items-center justify-center">
-                    <Image src="/images/builder.svg" alt="icon" width={24} height={24} className="w-6 h-6 2xl:w-7 2xl:h-7 object-contain" />
-                  </div>
-                  <h3 className="text-[18px] 2xl:text-[22px] text-[#191c1e]">{a.team.specializations.title}</h3>
                 </div>
-                <ul className="space-y-4 mb-8 flex-grow">
-                  {a.team.specializations.list.map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-[15px] 2xl:text-[16px] text-[#475569] font-medium">
-                      <span className="w-2 h-2 bg-[#0942b2] rounded-full flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="pt-6 border-t border-gray-100">
-                  <p className="text-[13px] 2xl:text-[15px] text-[#0942b2] font-bold tracking-wide">{a.team.specializations.exp}</p>
-                </div>
-              </div>
-            </FadeIn>
+              </FadeIn>
+            ))}
           </div>
+
         </div>
       </section>
-
-      {/* 3. НАШИ ЦЕННОСТИ */}
       {/* 3. НАШИ ЦЕННОСТИ */}
       <section className="w-full bg-white py-16 md:py-24 2xl:py-32">
         <div className="max-w-7xl 2xl:max-w-[1600px] w-full mx-auto px-5 md:px-8 2xl:px-12">

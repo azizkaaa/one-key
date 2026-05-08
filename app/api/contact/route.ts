@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+// 1. Обновленная схема валидации
 const contactSchema = z.object({
   name: z.string().min(2).max(100),
   phone: z.string().min(7).max(20),
-  message: z.string().min(10).max(2000).optional(),
+  // Убрали .min(10), теперь достаточно 1 символа, если поле заполнено
+  message: z.string().max(2000).optional().or(z.literal("")),
+  industry: z.string().min(1, "Выберите направление"), // Новое обязательное поле
   source: z.string().optional(),
 });
 
@@ -20,7 +23,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, phone, message, source } = parsed.data;
+    const { name, phone, message, industry, source } = parsed.data;
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -33,15 +36,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 2. Формируем сообщение в формате HTML (надежнее Markdown)
+    // Используем <b> вместо *
     const text = [
-      `🔔 *Новая заявка !`,
+      `<b>🔔 Новая заявка!</b>`,
       ``,
-      `👤 *Имя:* ${name}`,
-      `📞 *Телефон:* ${phone}`,
-      message ? `💬 *Сообщение:* ${message}` : null,
-      source ? `📍 *Источник:* ${source}` : null,
+      `<b>👤 Имя:</b> ${name}`,
+      `<b>📞 Телефон:</b> ${phone}`,
+      `<b>🏢 Направление:</b> ${industry}`, // Добавили в отчет
+      message ? `<b>💬 Сообщение:</b> ${message}` : null,
+      `<b>📍 Источник:</b> ${source || "Страница контактов"}`,
       ``,
-      `🕐 ${new Date().toLocaleString("ru-RU", { timeZone: "Asia/Tashkent" })}`,
+      `<i>🕐 ${new Date().toLocaleString("ru-RU", { timeZone: "Asia/Tashkent" })}</i>`,
     ]
       .filter(Boolean)
       .join("\n");
@@ -54,7 +60,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           chat_id: chatId,
           text,
-          parse_mode: "Markdown",
+          parse_mode: "HTML", // Сменили на HTML
         }),
       }
     );

@@ -16,7 +16,8 @@ export default function ServicesPage() {
         <div className="max-w-7xl 2xl:max-w-[1600px] w-full mx-auto px-5 md:px-8 2xl:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 2xl:gap-16 items-center">
             <FadeIn direction="left">
-              <h1 className="text-[42px] sm:text-[52px] md:text-[64px] 2xl:text-[80px] font-normal leading-[1.05] tracking-tight text-[#191c1e]">
+              {/* Уменьшили мобильный шрифт до 32px, добавили break-words для длинных слов */}
+              <h1 className="text-[32px] sm:text-[42px] md:text-[56px] lg:text-[64px] 2xl:text-[80px] font-normal leading-[1.1] tracking-tight text-[#191c1e] break-words">
                 {s.hero.title1}
                 <br />
                 <span className="text-[#0942b2]">{s.hero.title2}</span>
@@ -176,43 +177,41 @@ export default function ServicesPage() {
 
       {/* 3. CTA SECTION */}
       <section className="w-full bg-[#0942b2] py-16 md:py-24 2xl:py-32">
-  <div className="max-w-7xl 2xl:max-w-[1600px] w-full mx-auto px-5 md:px-8 2xl:px-12">
-    <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-      
-      <FadeIn direction="left" className="max-w-[800px] text-center md:text-left">
-        <h2 
-          className="text-[32px] md:text-[42px] 2xl:text-[56px] font-normal text-white leading-[1.1] tracking-tight" 
-          style={{ fontFamily: 'var(--font-heading)' }}
-        >
-          {/* Используем данные из i18n. 
-              Чтобы слова не прыгали, добавляем whitespace-nowrap на весь заголовок 
-              или его части через локализацию 
-          */}
-          <span className="block whitespace-nowrap">
-            {s.cta.title.split(' ').slice(0, 2).join(' ')}
-          </span>
-          <span className="block">
-            {s.cta.title.split(' ').slice(2).join(' ')}
-          </span>
-        </h2>
-        
-        <p className="mt-6 text-[16px] md:text-[18px] 2xl:text-[20px] text-white/75 leading-relaxed max-w-[600px]">
-          {s.cta.subtitle}
-        </p>
-      </FadeIn>
-      
-      <FadeIn delay={0.1}>
-        <Link 
-          href="/contacts" 
-          className="inline-block bg-transparent border-2 border-white text-white px-10 py-3.5 rounded font-bold text-[16px] 2xl:text-[18px] hover:bg-white hover:text-[#0942b2] transition-all whitespace-nowrap active:scale-95"
-        >
-          {s.cta.btn}
-        </Link>
-      </FadeIn>
+        <div className="max-w-7xl 2xl:max-w-[1600px] w-full mx-auto px-5 md:px-8 2xl:px-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+            
+            <FadeIn direction="left" className="max-w-[800px] text-center md:text-left w-full">
+              <h2 
+               
+                className="text-[28px] sm:text-[32px] md:text-[42px] 2xl:text-[56px] font-normal text-white leading-[1.2] md:leading-[1.1] tracking-tight break-words" 
+                style={{ fontFamily: 'var(--font-heading)' }}
+              >
+                {/* whitespace-nowrap теперь работает ТОЛЬКО на планшетах и ПК (md:whitespace-nowrap) */}
+                <span className="block md:whitespace-nowrap">
+                  {s.cta.title.split(' ').slice(0, 2).join(' ')}
+                </span>
+                <span className="block">
+                  {s.cta.title.split(' ').slice(2).join(' ')}
+                </span>
+              </h2>
+              
+              <p className="mt-6 text-[15px] sm:text-[16px] md:text-[18px] 2xl:text-[20px] text-white/75 leading-relaxed max-w-[600px] mx-auto md:mx-0">
+                {s.cta.subtitle}
+              </p>
+            </FadeIn>
+            
+            <FadeIn delay={0.1}>
+              <Link 
+                href="/contacts" 
+                className="inline-block bg-transparent border-2 border-white text-white px-8 md:px-10 py-3.5 rounded font-bold text-[15px] md:text-[16px] 2xl:text-[18px] hover:bg-white hover:text-[#0942b2] transition-all whitespace-nowrap active:scale-95"
+              >
+                {s.cta.btn}
+              </Link>
+            </FadeIn>
 
-    </div>
-  </div>
-</section>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
